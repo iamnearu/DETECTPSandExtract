@@ -1,0 +1,11 @@
+# requirements.txt - khởi tạo
+torch>=1.13.0
+torchvision>=0.14.0
+opencv-python
+pandas
+scikit-learn
+matplotlib
+tqdm
+albumentations
+PyYAML
+ultralytics

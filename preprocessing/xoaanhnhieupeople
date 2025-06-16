@@ -1,0 +1,39 @@
+import os
+import pandas as pd
+
+# Đường dẫn
+image_dir = r"C:\Users\FPT SHOP\OneDrive\Documents\XLA\DETECTPSandExtract\dataset\images"
+csv_path = r"C:\Users\FPT SHOP\OneDrive\Documents\XLA\DETECTPSandExtract\annotations.csv"
+original_csv = r"C:\Users\FPT SHOP\OneDrive\Documents\XLA\DETECTPSandExtract\annotations.csv"
+
+# Danh sách ảnh nhiều người cần xóa
+to_remove = [
+    "img017_jpg.rf.19fa0fedf41983bce77759d30407a47b.jpg",
+    "img018_jpg.rf.84958216b019c40e6de0c1f819d551b2.jpg",
+    "img019_jpg.rf.2f356fb0dcf196418b0ba189ea47fddb.jpg",
+    "img030_jpg.rf.5a98e2f9f0322e77a1280828740ae208.jpg",
+    "img038_jpg.rf.462a330aed7d5068fb1c942c8d35c851.jpg",
+    "img048_jpg.rf.b301f0595c9980d040df01618dbc41e2.jpg",
+    "img007_jpg.rf.110b1d324145595ddb1468e05cdb807e.jpg",
+    "img008_jpg.rf.8790e14fdcfb7e63e1ef4b64d4eaac1a.jpg",
+    "img009_jpg.rf.997fc137ac4c454497e0f55d8702c103.jpg"
+]
+
+# Tạo danh sách ảnh cần xóa (bao gồm ảnh augment)
+all_remove = []
+for base in to_remove:
+    all_remove.append(base)
+    all_remove.append(base.replace(".", "_aug0."))
+    all_remove.append(base.replace(".", "_aug1."))
+
+# Xóa ảnh
+for f in all_remove:
+    path = os.path.join(image_dir, f)
+    if os.path.exists(path):
+        os.remove(path)
+
+# Cập nhật file annotation
+df = pd.read_csv(original_csv)
+df = df[~df["image"].isin(all_remove)]
+df.to_csv(csv_path, index=False)
+print(f"✅ Đã xóa {len(all_remove)} ảnh và cập nhật annotation")

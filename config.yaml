@@ -1,0 +1,36 @@
+# config.yaml - khởi tạo
+# === config.yaml ===
+
+# 📌 Cấu hình dự án phân loại tư thế và màu tóc từ ảnh
+
+# === ĐƯỜNG DẪN DỮ LIỆU ===
+data:
+  image_dir: data/images
+  train_csv: data/splits/train.csv
+  val_csv: data/splits/val.csv
+  test_csv: data/splits/test.csv
+
+# === CẤU HÌNH HUẤN LUYỆN ===
+training:
+  batch_size: 32
+  num_epochs: 10
+  learning_rate: 0.0001
+  save_dir: models
+  log_path: logs/training_log.csv
+
+# === THÔNG TIN MÔ HÌNH ===
+model:
+  backbone: resnet18
+  num_posture_classes: 2   # sitting, standing
+  num_hair_classes: 4      # black, brown, blonde, other
+
+# === ĐƯỜNG DẪN KẾT QUẢ ===
+results:
+  metrics_plot: results/training_metrics.png
+  confusion_pose: results/confusion_pose.png
+  confusion_hair: results/confusion_hair.png
+
+# === DỰ ĐOÁN ===
+predict:
+  model_path: models/model_best.pt
+  input_image: data/images/example.jpg

@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.ipynb_checkpoints/
+
+# Môi trường ảo
+venv/
+.env
+.env.*
+
+# File mô hình và dữ liệu lớn
+*.pt
+*.pth
+*.h5
+*.onnx
+*.ckpt
+*.weights
+*.tflite
+
+# Kết quả xuất ra
+*.mp4
+*.avi
+images/output/
+video/output/
+inference/output/
+
+# VSCode
+.vscode/
+
+# Jupyter notebook metadata
+.ipynb_checkpoints/
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
