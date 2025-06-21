@@ -68,4 +68,4 @@ for filename in os.listdir(IMAGE_DIR):
     cv2.imwrite(output_path, image)
     print(f"[✔] Processed: {filename} → {output_path}")
 
-print("✅ Đã xử lý xong toàn bộ ảnh.")
+print(" Đã xử lý xong toàn bộ ảnh.")

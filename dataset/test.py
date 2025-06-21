@@ -15,4 +15,4 @@ for folder, files in files_to_create.items():
         if not os.path.exists(fpath):
             with open(fpath, "w", encoding="utf-8") as f:
                 f.write(f"# {fname} - khởi tạo\n")
-            print(f"✅ Đã tạo: {fpath}")
+            print(f"Đã tạo: {fpath}")

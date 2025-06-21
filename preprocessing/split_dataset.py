@@ -15,4 +15,4 @@ train_df.to_csv("data/splits/train.csv", index=False)
 val_df.to_csv("data/splits/val.csv", index=False)
 test_df.to_csv("data/splits/test.csv", index=False)
 
-print("✅ Đã chia dữ liệu thành train / val / test.")
+print(" Đã chia dữ liệu thành train / val / test.")

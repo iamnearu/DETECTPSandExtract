@@ -68,16 +68,16 @@ def plot_confusion(csv_path, image_dir, model_path, save_dir="results"):
     plt.close()
 
     # In chi tiết báo cáo
-    print("\n📊 [POSTURE] Evaluation Report:")
+    print("\n [POSTURE] Evaluation Report:")
     print(classification_report(y_true_pose, y_pred_pose, target_names=dataset.posture_classes))
 
-    print("\n🎨 [HAIR COLOR] Evaluation Report:")
+    print("\n [HAIR COLOR] Evaluation Report:")
     print(classification_report(y_true_hair, y_pred_hair, target_names=dataset.hair_classes))
     acc_pose = accuracy_score(y_true_pose, y_pred_pose)
     acc_hair = accuracy_score(y_true_hair, y_pred_hair)
 
-    print(f"\n✅ Độ chính xác (Accuracy) Posture: {acc_pose:.2%}")
-    print(f"✅ Độ chính xác (Accuracy) Hair Color: {acc_hair:.2%}")
+    print(f"\n Độ chính xác (Accuracy) Posture: {acc_pose:.2%}")
+    print(f" Độ chính xác (Accuracy) Hair Color: {acc_hair:.2%}")
 
 
 if __name__ == '__main__':

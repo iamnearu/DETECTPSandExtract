@@ -41,13 +41,13 @@ def predict(image_path, model_path="models/model_best.pt"):
         pred_pose = posture_labels[torch.argmax(out_pose).item()]
         pred_hair = hair_labels[torch.argmax(out_hair).item()]
 
-    print(f"🧍 Tư thế dự đoán: {pred_pose}")
-    print(f"🎨 Màu tóc dự đoán: {pred_hair}")
+    print(f" Tư thế dự đoán: {pred_pose}")
+    print(f" Màu tóc dự đoán: {pred_hair}")
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("❗ Vui lòng cung cấp đường dẫn tới ảnh cần dự đoán.")
+        print(" Vui lòng cung cấp đường dẫn tới ảnh cần dự đoán.")
         print("Cách dùng: python src/predict.py path/to/image.jpg")
     else:
         image_path = sys.argv[1]

@@ -1,93 +1,35 @@
-📌 Dự án: Hệ thống nhận diện người và trích xuất thông tin đặc trưng từ ảnh
+# Human Detection and Attribute Extraction System
 
-🎯 Mục tiêu
+This project develops a deep learning-based system to **detect humans** in images or videos and **extract key attributes** such as **posture** (standing/sitting) and **hair color** (black, brown, blonde, other). The system combines **ResNet18** for classification and **YOLOv8** for detection, working effectively on a custom-labeled dataset.
 
-Xây dựng hệ thống AI có khả năng:
+## Objectives
 
-Phát hiện người trong ảnh hoặc video
+- Detect humans in images or video streams
+- Classify posture: `standing` or `sitting`
+- Classify hair color: `black`, `brown`, `blonde`, or `other`
 
-Trích xuất đặc trưng: dáng đứng (standing/sitting) và màu tóc (black, brown, blonde, other)
+## System Architecture
 
-Dự án ứng dụng học sâu (Deep Learning) kết hợp với mô hình ResNet18, hoạt động tốt trên tập dữ liệu ảnh tự thu thập.
+### Data Preprocessing
 
-🧠 Kiến trúc hệ thống
+- Label images manually with: `posture` and `hair_color`
+- Resize images to `224x224`
+- Apply augmentations: flipping, rotation, brightness adjustment
+- Split into: `train.csv`, `val.csv`, `test.csv`
 
-Tiền xử lý dữ liệu:
+### Deep Learning Model
 
-Gán nhãn ảnh người: posture, hair_color
+- Backbone: ResNet18 (pretrained)
+- Two classification heads:
+  - `fc_pose`: classify posture
+  - `fc_hair`: classify hair color
+- Loss Function: CrossEntropyLoss
+- Optimizer: Adam
 
-Resize về 224x224
+### Inference Pipeline
 
-Augmentation: lật, xoay, tăng sáng
+- Image Inference: classify posture and hair color of a single image
+- Video Inference: detect humans with YOLOv8, then classify attributes with ResNet18
 
-Chia tập: train.csv, val.csv, test.csv
+## Project Structure
 
-Mô hình học sâu:
-
-Backbone: ResNet18 (pretrained)
-
-2 nhánh phân loại: fc_pose và fc_hair
-
-Huấn luyện với CrossEntropyLoss và Adam Optimizer
-
-Triển khai:
-
-Dự đoán ảnh bất kỳ bằng model_best.pt
-
-Dự đoán trên video thông qua YOLOv8 + mô hình phân loại
-
-📂 Cấu trúc thư mục
-
-DETECTPSandExtract/
-├── data/            # ảnh + nhãn
-├── preprocessing/   # xử lý ảnh
-├── src/             # code train/predict/evaluate
-├── models/          # lưu model_best.pt
-├── results/         # lưu biểu đồ, confusion matrix
-├── run_training.py  # chạy huấn luyện
-├── run_predict.py   # dự đoán ảnh mới
-├── video_inference.py # chạy trên video
-├── config.yaml
-└── requirements.txt
-
-▶️ Cài đặt & chạy
-
-🔧 Cài thư viện cần thiết:
-
-pip install -r requirements.txt
-
-🏋️ Huấn luyện mô hình:
-
-python run_training.py
-
-Model sẽ lưu tại: models/model_best.pt
-
-🧠 Dự đoán ảnh đơn:
-
-python src/predict.py data/images/example.jpg
-
-Kết quả: in tư thế và màu tóc ra màn hình.
-
-🎥 Dự đoán trên video:
-
-python video_inference.py
-
-Kết quả lưu tại: output.mp4
-
-📊 Đánh giá mô hình
-
-python -m src.evaluate
-
-Vẽ biểu đồ: results/training_metrics.png
-
-Confusion matrix: results/confusion_pose.png, confusion_hair.png
-
-F1-score và accuracy in ra terminal
-
-📌 Gợi ý mở rộng
-
-Bổ sung nhận diện giới tính, độ tuổi
-
-Phân tích biểu cảm khuôn mặt
-
-Tích hợp real-time qua webcam hoặc Streamlit app
