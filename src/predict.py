@@ -6,7 +6,7 @@ import sys
 import os
 from torchvision import transforms
 from src.model import HairPoseNet
-from src.dataset import HairPoseDataset
+from src.dataset import HairPoseBBoxDataset
 
 
 def predict(image_path, model_path="models/model_best.pt"):

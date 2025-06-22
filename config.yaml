@@ -1,15 +1,14 @@
 # config.yaml - khởi tạo
 # === config.yaml ===
 
-# 📌 Cấu hình dự án phân loại tư thế và màu tóc từ ảnh
+#  Cấu hình dự án phân loại tư thế và màu tóc từ ảnh
 
 # === ĐƯỜNG DẪN DỮ LIỆU ===
 data:
+  train_bbox_csv: data/splits/train_bbox.csv
+  val_bbox_csv: data/splits/val_bbox.csv
+  test_bbox_csv: data/splits/test_bbox.csv
   image_dir: data/images
-  train_csv: data/splits/train.csv
-  val_csv: data/splits/val.csv
-  test_csv: data/splits/test.csv
-
 # === CẤU HÌNH HUẤN LUYỆN ===
 training:
   batch_size: 32

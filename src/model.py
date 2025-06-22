@@ -1,19 +1,16 @@
-# model.py - khởi tạo
-# === src/model.py ===
 import torch.nn as nn
-import torchvision.models as models
 from torchvision.models import resnet18, ResNet18_Weights
 
-class HairPoseNet(nn.Module):
-    def __init__(self, num_posture=2, num_hair=4):
+class DualInputHairPoseNet(nn.Module):
+    def __init__(self, posture_classes=2, hair_classes=3):
         super().__init__()
-        base = resnet18(weights=ResNet18_Weights.DEFAULT)
-        self.backbone = nn.Sequential(*list(base.children())[:-1])  # bỏ FC cuối
-        self.fc_pose = nn.Linear(512, num_posture)
-        self.fc_hair = nn.Linear(512, num_hair)
+        self.backbone_pose = nn.Sequential(*list(resnet18(weights=ResNet18_Weights.DEFAULT).children())[:-1])
+        self.backbone_hair = nn.Sequential(*list(resnet18(weights=ResNet18_Weights.DEFAULT).children())[:-1])
+        self.fc_pose = nn.Linear(512, posture_classes)
+        self.fc_hair = nn.Linear(512, hair_classes)
 
-    def forward(self, x):
-        x = self.backbone(x).view(x.size(0), -1)
-        return self.fc_pose(x), self.fc_hair(x)
-
+    def forward(self, x_pose, x_hair):
+        f_pose = self.backbone_pose(x_pose).view(x_pose.size(0), -1)
+        f_hair = self.backbone_hair(x_hair).view(x_hair.size(0), -1)
+        return self.fc_pose(f_pose), self.fc_hair(f_hair)
 

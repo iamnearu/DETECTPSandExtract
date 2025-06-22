@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # === CẤU HÌNH ===
-image_dir = r"C:\Users\FPT SHOP\OneDrive\Documents\XLA\DETECTPSandExtract\dataset\images"  # Thư mục chứa ảnh thật
+image_dir = r"/data/images"  # Thư mục chứa ảnh thật
 csv_path = "annotations.csv"  # File annotation cần kiểm tra
 output_csv_path = "annotations.csv"  # File xuất ra
 
